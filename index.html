@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <meta name="description" content="Just a dashboard" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./script/main.js"></script>
+  </head>
+  <body>
+    <main class="main-container">
+      <div class="time-date">
+        <p id="time" class="time">13:37</p>
+        <p id="date">1 april 2024</p>
+      </div>
+      <div class="mid-container">
+        <h1 id="heading" class="dash-heading">Change me!</h1>
+        <div class="dash-sections">
+          <section id="dash-card-1" class="dash-section">
+            <h2>Snabblänkar</h2>
+          </section>
+          <section id="dash-card-2" class="dash-section">
+            <h2>Dagens väder</h2>
+          </section>
+          <section id="dash-card-3" class="dash-section">
+            <h2>[Placeholder]</h2>
+          </section>
+          <section id="dash-card-4" class="dash-section">
+            <h2>Anteckningar</h2>
+            <textarea id="notes" class="notes"></textarea>
+          </section>
+        </div>
+      </div>
+      <button id="bg-btn" class="bg-btn">
+        <i class="fa-solid fa-rotate-right"></i> Slumpa ny bakgrund
+      </button>
+    </main>
+  </body>
+</html>
