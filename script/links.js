@@ -12,11 +12,17 @@ const linkObj = (linkName, linkUrl) => ({
   favicon: `https://s2.googleusercontent.com/s2/favicons?domain_url=${linkUrl}&sz=32`,
 });
 
-// test
+///////////////////////////////////////////////////
+// TESTING SETTING STORAGE HERE FOR DESIGNING UI //
+//////// FIXME REMOVE WHEN DONE FIXME /////////////
 localStorage.setItem(
   'links',
-  JSON.stringify([linkObj('Google', 'https://www.google.se')])
+  JSON.stringify([
+    linkObj('Google', 'https://www.google.se'),
+    linkObj('Youtube', 'https://youtube.com'),
+  ])
 );
+/////////////////////////////////////////////////
 
 const setupLinks = () => {
   // Checking if there are saved links and pushes them to links array if there are
