@@ -20,6 +20,7 @@ localStorage.setItem(
   JSON.stringify([
     linkObj('Google', 'https://www.google.se'),
     linkObj('Youtube', 'https://youtube.com'),
+    linkObj('Udemy', 'https://www.udemy.com/home/my-courses/learning/'),
   ])
 );
 /////////////////////////////////////////////////
