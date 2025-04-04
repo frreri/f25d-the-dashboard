@@ -30,15 +30,31 @@
       <div class="mid-container">
         <h1 id="heading" class="dash-heading">Change me!</h1>
         <div class="dash-sections">
+          <!-- LINKS SECTION -->
           <section id="dash-card-1" class="dash-section">
             <h2>Snabblänkar</h2>
+            <div id="links" class="link-container"></div>
+            <form id="link-form" class="link-form">
+              <div class="link-form--row">
+                <label for="link-name">Namn</label>
+                <input id="link-name" type="text" />
+              </div>
+              <div class="link-form--row">
+                <label for="link-url">Adress</label>
+                <input id="link-url" type="text" />
+              </div>
+              <button class="link-form--btn">OK</button>
+            </form>
           </section>
+          <!-- WEATHER SECTION -->
           <section id="dash-card-2" class="dash-section">
             <h2>Dagens väder</h2>
           </section>
+          <!-- PLACEHOLDER SECTION -->
           <section id="dash-card-3" class="dash-section">
             <h2>[Placeholder]</h2>
           </section>
+          <!-- NOTES SECTION -->
           <section id="dash-card-4" class="dash-section">
             <h2>Anteckningar</h2>
             <textarea id="notes" class="notes"></textarea>

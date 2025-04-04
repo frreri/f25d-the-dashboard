@@ -74,6 +74,38 @@ body {
   border-radius: 10px;
 }
 
+.link-form {
+  margin-top: 1rem;
+  width: 85%;
+}
+
+.link-form--row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.link-form--btn {
+  display: none;
+}
+.link-container {
+  width: 90%;
+}
+.link {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+.link:visited,
+.link:link,
+.link:hover,
+.link:active {
+  color: black;
+}
+
 .bg-btn {
   padding: 0.5rem;
   border: none;
@@ -84,4 +116,8 @@ body {
 }
 .bg-btn:hover {
   background-color: #bbb;
+}
+
+.hidden {
+  display: none;
 }

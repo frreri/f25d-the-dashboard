@@ -5,6 +5,7 @@ export const setupClock = (timeEl, dateEl) => {
   let lastTime;
   let lastDate;
 
+  // function to only update textContent of elements if it has changed
   const updateText = (el, newText, oldText) => {
     if (newText === oldText) return;
     el.textContent = newText;
