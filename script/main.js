@@ -1,8 +1,7 @@
 'use strict';
 
 import { setupClock } from './clock.js';
-import { setupNotes } from './notes.js';
-import { makeEditable } from './edit.js';
+import { editHeading, editNotes } from './edit.js';
 import { setupLinks } from './links.js';
 import { setupWeather } from './weather.js';
 
@@ -12,8 +11,8 @@ const notes = document.getElementById('notes');
 const heading = document.getElementById('heading');
 
 setupClock(time, date);
-setupNotes(notes);
 setupWeather();
 setupLinks();
 
-makeEditable('dashH1', heading);
+editNotes(notes);
+editHeading('dashH1', heading);
