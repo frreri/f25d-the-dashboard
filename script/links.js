@@ -13,9 +13,12 @@ const linkObj = (linkName, linkUrl) => ({
   favicon: `https://s2.googleusercontent.com/s2/favicons?domain_url=${linkUrl}&sz=32`,
 });
 
+const saveLinks = () => localStorage.setItem('links', JSON.stringify(links));
+const getLinks = () => localStorage.getItem('links');
+
 const setupLinks = () => {
   // Checking if there are saved links and pushes them to links array if there are
-  const savedLinks = localStorage.getItem('links');
+  const savedLinks = getLinks();
   if (savedLinks) JSON.parse(savedLinks).forEach(link => links.push(link));
 
   if (links.length > 0) displayLinks(links);
@@ -45,6 +48,7 @@ const displayLinks = linkArr => {
 const toggleForm = () => {
   form.classList.toggle('hidden');
   linkBtn.classList.toggle('hidden');
+  nameInput.focus();
 };
 
 const addLink = e => {
@@ -60,7 +64,7 @@ const addLink = e => {
     linkUrl = linkUrl.startsWith('https://') ? linkUrl : 'https://' + linkUrl;
 
     links.push(linkObj(nameInput.value, linkUrl));
-    localStorage.setItem('links', JSON.stringify(links));
+    saveLinks();
     displayLinks(links);
     nameInput.value = '';
     urlInput.value = '';
@@ -76,10 +80,9 @@ const removeLink = e => {
     e.preventDefault();
     const linkIndex = Number(e.target.closest('.link').dataset.index);
     links.splice(linkIndex, 1);
+    saveLinks();
     displayLinks(links);
   }
 };
 
 export { setupLinks };
-
-// TODO  ADD POSSIBILITY TO REMOVE LINKS
