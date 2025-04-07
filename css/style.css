@@ -1,5 +1,5 @@
 :root {
-  --bg-color: rgba(180, 180, 180, 0.5);
+  --bg-color: rgba(200, 200, 200, 0.6);
 }
 
 * {
@@ -10,6 +10,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  color: #f8f8f8;
 }
 
 .main-container {
@@ -25,7 +26,7 @@ body {
 .time-date,
 .dash-section {
   background-color: var(--bg-color);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
   border-radius: 1rem;
 }
 
