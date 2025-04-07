@@ -7,4 +7,8 @@ import { weatherIcons } from '../data/weatherIcons.js';
 
 export const setupWeather = () => {
   console.log(weatherIcons.get('0'));
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    console.log(`Lat:${pos.coords.latitude} Long: ${pos.coords.longitude}`);
+  });
 };
