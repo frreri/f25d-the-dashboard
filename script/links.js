@@ -47,8 +47,8 @@ const displayLinks = linkArr => {
 
 const toggleForm = () => {
   form.classList.toggle('hidden');
+  if (!form.classList.contains('hidden')) nameInput.focus();
   linkBtn.classList.toggle('hidden');
-  nameInput.focus();
 };
 
 const addLink = e => {
