@@ -20,20 +20,23 @@ const setupLinks = () => {
 
   if (links.length > 0) displayLinks(links);
 
+  linkContainer.addEventListener('click', removeLink);
   linkBtn.addEventListener('click', toggleForm);
   form.addEventListener('submit', addLink);
 };
 
 const displayLinks = linkArr => {
   linkContainer.innerHTML = '';
-  linkArr.forEach(link => {
+  linkArr.forEach((link, index) => {
     const linkEl = document.createElement('a');
+    linkEl.dataset.index = index;
     linkEl.href = link.url;
     linkEl.target = '_blank';
     linkEl.classList.add('link');
     linkEl.innerHTML = `
       <img src="${link.favicon}" alt="favicon">
       <p>${link.name}</p>
+      <button id="remove-btn" class="remove-btn" title="Remove"><i class="fa-regular fa-square-minus"></i></button>
     `;
     linkContainer.append(linkEl);
   });
@@ -46,13 +49,11 @@ const toggleForm = () => {
 
 const addLink = e => {
   e.preventDefault();
-
   // If both fields are empty, close form
   if (!nameInput.value && !urlInput.value) {
     toggleForm();
     return;
   }
-
   // If both fields have values, add link, else show message that both fields need a value
   if (nameInput.value && urlInput.value) {
     let linkUrl = urlInput.value.toLowerCase();
@@ -61,7 +62,6 @@ const addLink = e => {
     links.push(linkObj(nameInput.value, linkUrl));
     localStorage.setItem('links', JSON.stringify(links));
     displayLinks(links);
-
     nameInput.value = '';
     urlInput.value = '';
     toggleForm();
@@ -70,8 +70,16 @@ const addLink = e => {
   }
 };
 
+const removeLink = e => {
+  if (e.target.closest('.remove-btn')) {
+    // prevent default to not go to the link if the click was on the remove button
+    e.preventDefault();
+    const linkIndex = Number(e.target.closest('.link').dataset.index);
+    links.splice(linkIndex, 1);
+    displayLinks(links);
+  }
+};
+
 export { setupLinks };
 
-// TODO ADD BUTTON FOR ADDING LINKS WHICH REVEALS THE FORM TO ADD LINKS AND HIDES THE BUTTON
-// FORM SHOULD CREATE LINK, ADD TO ARRAY AND SAVE IT STRINGIFIED THEN CALL DISPLAY LINKS, HIDE ITSELF AND SHOW BUTTON AGAIN
-// ADD POSSIBILITY TO REMOVE LINKS, AND STYLE THEM BETTER
+// TODO  ADD POSSIBILITY TO REMOVE LINKS
