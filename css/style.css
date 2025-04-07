@@ -13,6 +13,8 @@
 body {
   font-family: 'Roboto', sans-serif;
   color: var(--main-text-color);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .main-container {
