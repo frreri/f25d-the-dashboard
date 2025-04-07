@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,7 +34,7 @@
           <section id="dash-card-1" class="dash-section">
             <h2>Snabblänkar</h2>
             <div id="links" class="link-container"></div>
-            <form id="link-form" class="link-form">
+            <form id="link-form" class="link-form hidden">
               <div class="link-form--row">
                 <label for="link-name">Namn</label>
                 <input id="link-name" type="text" />
@@ -45,6 +45,9 @@
               </div>
               <button class="link-form--btn">OK</button>
             </form>
+            <button id="link-btn" class="btn">
+              <i class="fa-solid fa-square-plus"></i> Lägg till länk
+            </button>
           </section>
           <!-- WEATHER SECTION -->
           <section id="dash-card-2" class="dash-section">
@@ -61,7 +64,7 @@
           </section>
         </div>
       </div>
-      <button id="bg-btn" class="bg-btn">
+      <button id="bg-btn" class="btn">
         <i class="fa-solid fa-rotate-right"></i> Slumpa ny bakgrund
       </button>
     </main>

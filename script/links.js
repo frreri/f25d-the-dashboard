@@ -4,6 +4,7 @@ const form = document.getElementById('link-form');
 const nameInput = document.getElementById('link-name');
 const urlInput = document.getElementById('link-url');
 const linkContainer = document.getElementById('links');
+const linkBtn = document.getElementById('link-btn');
 
 const links = [];
 const linkObj = (linkName, linkUrl) => ({
@@ -12,25 +13,15 @@ const linkObj = (linkName, linkUrl) => ({
   favicon: `https://s2.googleusercontent.com/s2/favicons?domain_url=${linkUrl}&sz=32`,
 });
 
-///////////////////////////////////////////////////
-// TESTING SETTING STORAGE HERE FOR DESIGNING UI //
-//////// FIXME REMOVE WHEN DONE FIXME /////////////
-localStorage.setItem(
-  'links',
-  JSON.stringify([
-    linkObj('Google', 'https://www.google.se'),
-    linkObj('Youtube', 'https://youtube.com'),
-    linkObj('Udemy', 'https://www.udemy.com/home/my-courses/learning/'),
-  ])
-);
-/////////////////////////////////////////////////
-
 const setupLinks = () => {
   // Checking if there are saved links and pushes them to links array if there are
   const savedLinks = localStorage.getItem('links');
   if (savedLinks) JSON.parse(savedLinks).forEach(link => links.push(link));
 
   if (links.length > 0) displayLinks(links);
+
+  linkBtn.addEventListener('click', toggleForm);
+  form.addEventListener('submit', addLink);
 };
 
 const displayLinks = linkArr => {
@@ -46,6 +37,37 @@ const displayLinks = linkArr => {
     `;
     linkContainer.append(linkEl);
   });
+};
+
+const toggleForm = () => {
+  form.classList.toggle('hidden');
+  linkBtn.classList.toggle('hidden');
+};
+
+const addLink = e => {
+  e.preventDefault();
+
+  // If both fields are empty, close form
+  if (!nameInput.value && !urlInput.value) {
+    toggleForm();
+    return;
+  }
+
+  // If both fields have values, add link, else show message that both fields need a value
+  if (nameInput.value && urlInput.value) {
+    let linkUrl = urlInput.value.toLowerCase();
+    linkUrl = linkUrl.startsWith('https://') ? linkUrl : 'https://' + linkUrl;
+
+    links.push(linkObj(nameInput.value, linkUrl));
+    localStorage.setItem('links', JSON.stringify(links));
+    displayLinks(links);
+
+    nameInput.value = '';
+    urlInput.value = '';
+    toggleForm();
+  } else {
+    alert('Du måste ange både namn och adress (URL)');
+  }
 };
 
 export { setupLinks };
