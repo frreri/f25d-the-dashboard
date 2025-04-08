@@ -40,22 +40,23 @@ export const setupWeather = async () => {
 const handleWeather = async (lat, long) => {
   // Getting weather data with lat long from above setupWeather function
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=weather_code,temperature_2m_max&timezone=Europe%2FBerlin&forecast_days=3`;
-  let weatherData = await getJSON(url);
-  weatherData = weatherData.daily;
+  try {
+    let weatherData = await getJSON(url);
+    weatherData = weatherData.daily;
 
-  // Creating and inserting html for today, tomorrow and they day after
-  weatherData.weather_code.forEach((code, index) => {
-    let day = 'Idag';
-    if (index === 1) day = 'Imorgon';
-    if (index === 2) {
-      day = dayNames[new Date(weatherData.time[index]).getDay()];
-    }
-    const weatherIcon = weatherIcons.get(String(code));
+    // Creating and inserting html for today, tomorrow and they day after
+    weatherData.weather_code.forEach((code, index) => {
+      let day = 'Idag';
+      if (index === 1) day = 'Imorgon';
+      if (index === 2) {
+        day = dayNames[new Date(weatherData.time[index]).getDay()];
+      }
+      const weatherIcon = weatherIcons.get(String(code));
 
-    const dayDiv = document.createElement('div');
-    dayDiv.classList.add('weather-day');
+      const dayDiv = document.createElement('div');
+      dayDiv.classList.add('weather-day');
 
-    dayDiv.innerHTML = `
+      dayDiv.innerHTML = `
       <img src="${weatherIcon.image}" alt="${weatherIcon.description}">
       <div>
         <h3>${day}</h3>
@@ -63,6 +64,10 @@ const handleWeather = async (lat, long) => {
       </div>
       <span class="weather-degrees">${weatherData.temperature_2m_max[index]}°C</span>
     `;
-    weatherContainer.append(dayDiv);
-  });
+      weatherContainer.append(dayDiv);
+    });
+  } catch (err) {
+    alert(`Error getting weather: ${err.message}`);
+    console.error(err);
+  }
 };
