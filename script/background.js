@@ -17,7 +17,10 @@ export const setupBackground = () => {
   }
 
   keyBtn.addEventListener('click', () => {
-    const newApiKey = prompt('Your Unsplash Access Key:', apiKey || '');
+    const newApiKey = prompt(
+      'Your Unsplash Access Key (will be stored locally):',
+      apiKey || ''
+    );
     if (newApiKey) localStorage.setItem('apikey', newApiKey);
     else localStorage.removeItem('apikey');
     location.reload();
