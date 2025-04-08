@@ -67,7 +67,7 @@ const handleWeather = async (lat, long) => {
       weatherContainer.append(dayDiv);
     });
   } catch (err) {
-    alert(`Error getting weather: ${err.message}`);
+    alert(`💥 Error getting weather: ${err.message} 💥`);
     console.error(err);
   }
 };
