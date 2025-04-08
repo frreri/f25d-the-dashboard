@@ -22,10 +22,9 @@ export class Chuck {
   async #displayJoke() {
     try {
       const data = await getJSON(this.#apiUrl);
-      console.log(data);
 
       this.#containerEl.innerHTML = `
-         <img src="${data.icon_url}">
+         <img src="${data.icon_url}" alt="Chuck Norris!">
         <p>${data.value}</p>
       `;
     } catch (err) {
