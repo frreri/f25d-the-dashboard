@@ -122,19 +122,33 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
-  text-decoration: none;
+  overflow: hidden;
 }
-.link:visited,
-.link:link,
-.link:hover,
-.link:active {
+
+.link-tag {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 80%;
+  padding: 0.5rem;
+}
+.link-tag:visited,
+.link-tag:link,
+.link-tag:hover,
+.link-tag:active {
   color: var(--secondary-text-color);
 }
 
-.remove-btn {
-  position: absolute;
-  right: 0.5rem;
+.remove-link-div {
+  background-color: #e8e8e8;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.remove-link-btn {
   font-size: 1rem;
   padding: 0.5rem;
   border: none;
@@ -142,7 +156,7 @@ body {
   cursor: pointer;
   border-radius: 8px;
 }
-.remove-btn:hover {
+.remove-link-btn:hover {
   background-color: var(--bg-color);
 }
 

@@ -31,15 +31,17 @@ const setupLinks = () => {
 const displayLinks = linkArr => {
   linkContainer.innerHTML = '';
   linkArr.forEach((link, index) => {
-    const linkEl = document.createElement('a');
+    const linkEl = document.createElement('div');
     linkEl.dataset.index = index;
-    linkEl.href = link.url;
-    linkEl.target = '_blank';
     linkEl.classList.add('link');
     linkEl.innerHTML = `
-      <img src="${link.favicon}" alt="favicon">
-      <p>${link.name}</p>
-      <button id="remove-btn" class="remove-btn" title="Remove"><i class="fa-regular fa-square-minus"></i></button>
+      <a class="link-tag" href="${link.url}" target="_blank">
+        <img src="${link.favicon}" alt="favicon">
+        <p>${link.name}</p>
+      </a>
+      <div class="remove-link-div">
+      <button id="remove-btn" class="remove-link-btn" title="Remove"><i class="fa-regular fa-square-minus"></i></button>
+      </div>
     `;
     linkContainer.append(linkEl);
   });
@@ -75,7 +77,7 @@ const addLink = e => {
 };
 
 const removeLink = e => {
-  if (e.target.closest('.remove-btn')) {
+  if (e.target.closest('.remove-link-btn')) {
     // prevent default to not go to the link if the click was on the remove button
     e.preventDefault();
     const linkIndex = Number(e.target.closest('.link').dataset.index);

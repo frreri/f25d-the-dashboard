@@ -38,7 +38,7 @@ const randomUnsplashBg = async () => {
     const data = await getJSON(
       `https://api.unsplash.com/photos/random?client_id=${apiKey}`
     );
-    document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) , url(${data.urls.regular})`;
+    document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) , url(${data.urls.full})`;
     console.log('%cBG FROM UNSPLASH API', 'color: #66ff66');
   } catch (err) {
     alert(`Error getting Unsplash BG: ${err.message}`);
