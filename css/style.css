@@ -28,6 +28,10 @@ body {
   align-items: center;
 }
 
+.mid-container {
+  margin-top: 1rem;
+}
+
 .time-date,
 .dash-section {
   background-color: var(--bg-color);
