@@ -1,4 +1,7 @@
 # The Dashboard
+
+Live preview: [Click here!](https://frreri.github.io/f25d-the-dashboard/)
+
 This is a dashboard application I created as a turn in for my Frontend Development class.
 
 I organized my code in a higly modular way, with every main feature in the application in its own module, which makes it easy to work with and debug.
