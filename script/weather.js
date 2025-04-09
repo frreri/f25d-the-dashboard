@@ -4,19 +4,6 @@
 import { weatherIcons } from '../data/weatherIcons.js';
 import { getJSON } from './jsonFetcher.js';
 
-const weatherContainer = document.getElementById('weather');
-
-// Array for translating day number from Date() to name
-const dayNames = [
-  'Söndag',
-  'Måndag',
-  'Tisdag',
-  'Onsdag',
-  'Torsdag',
-  'Fredag',
-  'Lördag',
-];
-
 export class WeatherMachine {
   #weatherContainer;
   #dayNames;
