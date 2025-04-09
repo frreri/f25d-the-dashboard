@@ -3,17 +3,16 @@
 import { getJSON } from './jsonFetcher.js';
 
 export class Chuck {
-  #apiUrl;
+  #apiUrl = 'https://api.chucknorris.io/jokes/random?category=dev';
   #containerEl;
   #jokeBtn;
 
-  constructor(apiUrl, containerEl, jokeBtn) {
-    this.#apiUrl = apiUrl;
+  constructor(containerEl, jokeBtn) {
     this.#containerEl = containerEl;
     this.#jokeBtn = jokeBtn;
   }
 
-  init() {
+  run() {
     this.#displayJoke();
 
     this.#jokeBtn.addEventListener('click', this.#displayJoke.bind(this));

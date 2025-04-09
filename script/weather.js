@@ -17,40 +17,61 @@ const dayNames = [
   'Lördag',
 ];
 
-export const setupWeather = async () => {
-  let lat;
-  let long;
-  // Get position using browser's built in geolocation api
-  navigator.geolocation.getCurrentPosition(
-    // success callback, will handle weather with users position
-    pos => {
-      lat = pos.coords.latitude;
-      long = pos.coords.longitude;
-      handleWeather(lat, long);
-    },
-    // failure callback, if user declines positioning, I handle weather with predefined cords from central Sweden
-    () => {
-      lat = 60.08;
-      long = 14.63;
-      handleWeather(lat, long);
+export class WeatherMachine {
+  #weatherContainer;
+  #dayNames;
+  #apiUrl;
+  #lat;
+  #long;
+  #weatherData;
+
+  constructor(weatherContainer, dayNames) {
+    this.#weatherContainer = weatherContainer;
+    this.#dayNames = dayNames;
+  }
+
+  async run() {
+    try {
+      const pos = await this.#getPosition();
+      this.#lat = pos.coords.latitude;
+      this.#long = pos.coords.longitude;
+    } catch (err) {
+      console.log(err);
+      this.#lat = 60.08;
+      this.#long = 14.63;
     }
-  );
-};
+    this.#setUrl();
+    await this.#getWeatherData();
+    this.#displayWeather();
+  }
 
-const handleWeather = async (lat, long) => {
-  // Getting weather data with lat long from above setupWeather function
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=weather_code,temperature_2m_max&timezone=Europe%2FBerlin&forecast_days=3`;
-  try {
-    let weatherData = await getJSON(url);
-    weatherData = weatherData.daily;
+  #getPosition() {
+    return new Promise((resolve, reject) =>
+      navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
+  }
 
-    // Creating and inserting html for today, tomorrow and they day after
-    weatherData.weather_code.forEach((code, index) => {
-      let day = 'Idag';
-      if (index === 1) day = 'Imorgon';
-      if (index === 2) {
-        day = dayNames[new Date(weatherData.time[index]).getDay()];
-      }
+  #setUrl() {
+    this.#apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${
+      this.#lat
+    }&longitude=${
+      this.#long
+    }&daily=weather_code,temperature_2m_max&timezone=Europe%2FBerlin&forecast_days=3`;
+  }
+
+  async #getWeatherData() {
+    try {
+      const data = await getJSON(this.#apiUrl);
+      this.#weatherData = data.daily;
+    } catch (err) {
+      alert(`💥 Error getting weather: ${err.message} 💥`);
+      console.error(err);
+    }
+  }
+
+  #displayWeather() {
+    this.#weatherData.weather_code.forEach((code, index) => {
+      let day = this.#getDayName(index);
       const weatherIcon = weatherIcons.get(String(code));
 
       const dayDiv = document.createElement('div');
@@ -62,12 +83,20 @@ const handleWeather = async (lat, long) => {
         <h3>${day}</h3>
         <span>${weatherIcon.description}</span>
       </div>
-      <span class="weather-degrees">${weatherData.temperature_2m_max[index]}°C</span>
+      <span class="weather-degrees">${
+        this.#weatherData.temperature_2m_max[index]
+      }°C</span>
     `;
-      weatherContainer.append(dayDiv);
+      this.#weatherContainer.append(dayDiv);
     });
-  } catch (err) {
-    alert(`💥 Error getting weather: ${err.message} 💥`);
-    console.error(err);
   }
-};
+
+  #getDayName(index) {
+    let day = 'Idag';
+    if (index === 1) day = 'Imorgon';
+    if (index === 2) {
+      day = this.#dayNames[new Date(this.#weatherData.time[index]).getDay()];
+    }
+    return day;
+  }
+}

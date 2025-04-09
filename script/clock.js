@@ -12,7 +12,7 @@ export class Clock {
     this.#dateEl = dateEl;
   }
 
-  init() {
+  run() {
     // run once first, so time displays directly, then every second
     this.#updateClock();
     setInterval(this.#updateClock.bind(this), 1000);
