@@ -21,7 +21,6 @@ So I would say some strengths of my code are:
 Some things I could improve on (These points might not be that important for a simple dashboard, but there are always things to improve):
 - The error handling, right now errors are displayed with alerts and console. I could have implemented some good looking messaging on the page itself
 - The location permission prompt is popping up directly when you go to the site, this could confuse users, as it is not clear it is about the weather, I could have had a button to click in the weather widget that initiated the geolocation stuff
-- Further accessibility improvements
 - In a real world production project I would probably have chosen one approach for my modules (here i used both class-based modules and non class based just to practice both ways)
 
 
