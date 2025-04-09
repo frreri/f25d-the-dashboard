@@ -25,7 +25,7 @@ Some things I could improve on (These points are pretty minor and not that impor
 - In a real world production project I would probably have chosen one approach for my modules (here i used both class-based modules and non class based just to practice both ways)
 
 
-### Overall I'm pretty happy with the end result, and especially the way I solved the task requiring usage of an API-key with the optional storing of a key in localStorage and using a non key api if you don't.
+### Overall I'm pretty happy with the end result, especially the way I solved the task requiring usage of an API-key, making it optional and storing it in localStorage.
 
 
 I did not get full score on best practices because of the point about the location permission prompt mentioned above:
